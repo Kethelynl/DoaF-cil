@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'project/bass.css' %}">
+    <link rel="stylesheet" href="{% static 'project/cor.css'%}">
+
+    {% block link %}{% endblock %}
+
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        {% block header %}
+            {% if not request.user.is_authenticated %}
+            <ul class="nav-bar">
+                <img src="{% static 'img/logo.png' %}" alt="logo">
+            </ul>
+            {% endif %}
+        {% endblock %}
+    </header>
+    <main>
+        {% block main %} 
+
+            <div class="banner">
+                <div class="text">
+                    <h1 class="reveal">Doa Fácil</h1>
+                    <h3 class="reveal-sub">Doe tudo que não é mais nescessário para quem precisa.</h3>
+
+                    <p>Esse site foi desenvolvido, pare te ajudar a desapegar de coisas que já não são mais úteis para você! doe e ajuda alguém que precisa.</p>
+
+                    <a href="{% url 'register' %}" class="btn-cadastro">Quero Participar!</a>
+                </div>
+            </div>
+
+            <div class="how-working">
+                <h3 class="reveal">Como Funciona?</h3>
+                
+                <div class="primary">
+                    <div class="container1">
+                        <div class="cart">
+                        <h4 class="reveal-sub">Cadastre-se</h4>
+                        <p>Crie uma conta em segundos!</p>
+                        <img src="{% static 'img/cad.png'%}" alt="#">
+                        </div>
+                        <div class="cart">
+                        <h4 class="reveal-sub">Encontre quem precisa!</h4>
+                        <p>Conecte-se com alguém próximo.</p>
+                        <img src="{% static 'img/procure.png'%}" alt="#">
+                        </div>
+                    </div>
+    
+                    <div class="container2">
+                        <div class="cart">
+                        <h4 class="reveal-sub">Publique uma doação</h4>
+                        <p>Tire uma foto e descreva o item.</p>
+                        <img src="{% static 'img/doar.png'%}" alt="#">
+                        </div>
+                        <div class="cart">
+                            <h4 class="reveal-sub">Doe com facilidade</h4>
+                            <p> Encontre quem está mais Perto!!</p>
+                            <img src="{% static 'img/map.png'%}" alt="#">
+                        </div>
+                    </div>
+                    <div class="container2">
+                        <div class="cart">
+                        <h4 class="reveal-sub">Faça seus Pedidos!</h4>
+                        <p>Tire uma foto e descreva o item.</p>
+                        <img src="{% static 'img/pedi.png'%}" alt="#">
+                        </div>
+                        <div class="cart">
+                            <h4 class="reveal-sub">Veja todos os Produtos</h4>
+                            <p> procure o que está precisando!</p>
+                            <img src="{% static 'img/quero.png'%}" alt="#">
+                        </div>
+                    </div>
+                    <div class="container2">
+                        <div class="cart">
+                        <h4 class="reveal-sub">Realize Sonhos!!</h4>
+                        <p>Conceda os pedidos</p>
+                        <img src="{% static 'img/ajude.png'%}" alt="#">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="depoiment">
+                <div class="person_cart">
+                    <img src="{% static 'img/mae.jpg' %}" alt="">
+                    <p class="name">Roberta Santos</p>
+                    <hr>
+                    <p class="op">Mãe Solo</p>
+                    <p class="tx">Encontrei um berço em ótimo estado para minha filha recém-nascida. 
+                        Fiquei emocionada ao ver como existem pessoas dispostas a ajudar. 
+                        Esse site realmente transforma vidas!</p>
+
+                </div>
+                <div class="person_cart">
+                    <img src="{% static 'img/menino.jpg' %}" alt="">
+                    <p class="name">Lucas Andrade</p>
+                    <hr>
+                    <p class="op">Estudante Universitário</p>
+                    <p class="tx">Precisava de um notebook para estudar, mas não tinha condições de comprar um. 
+                        Consegui um aqui e foi um verdadeiro presente! Agora posso acompanhar as aulas e 
+                        seguir meu sonho.</p>
+                </div>
+                <div class="person_cart">
+                    <img src="{% static 'img/vo.jpg' %}" alt="">
+                    <p class="name">Dona Lúcia</p>
+                    <hr>
+                    <p class="op">Aposentada</p>
+                    <p class="tx">Tinha vários móveis parados em casa e não sabia o que fazer. 
+                        Doei tudo pelo site e foi incrível saber que agora outras famílias estão aproveitando. 
+                        Ajudar é muito gratificante!</p>
+                </div>
+            </div>
+
+            <div class="about">
+                <h3 class="reveal">Porque foi criado?</h3>
+
+                <p class="reveal-sub">Foi uma iniciativa que desenvolvi em parceria com a faculdade 
+                    Cruzeiro do Sul para um projeto ligado aos Objetivos de Desenvolvimento Sustentável (ODS). 
+                    Meu propósito é utilizar minhas habilidades para tornar o processo de doação mais acessível e eficiente, 
+                    contribuindo para um mundo melhor.
+                </p>
+            </div>
+
+            <div class="go">
+                <h3 class="reveal">Pronto para fazer a diferença?</h3>
+                <p>Cadastre-se agora e ajude a espalhar generosidade pelo mundo!</p>
+
+                <a href="{% url 'register' %}" class="btn-cadastro">Quero Participar!</a>
+            </div>
+        {% endblock %}
+    </main>
+        {% block footer%}
+        <footer>
+            <div class="block">
+                <h3>Duvidas</h3>
+                <p>E-mail: Kethcavalari@gmail.com</p>
+            </div>
+            <div class="block">
+                <p>Criadora: Kethelyn Cavalari</p>
+                <p>Faculdade: Cruzeiro do Sul</p>
+            </div>
+        </footer>
+        {% endblock %}
+</body>
+
+{% block script %}
+<script src="{% static 'js/dox.js' %}"></script>
+{% endblock %}
+</html>

@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'project/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'project/update.css' %}">
+{% endblock %}
+
+{% block main %}
+{% if messages %}
+<ul class="message">
+    {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<div class="update">
+    <h3>Mudar foto</h3>
+    <form method="post" enctype="multipart/form-data" class="form_img">
+        {% csrf_token %}
+        
+        {{ form }}
+
+        <img id="preview" src="#" alt="Prévia da imagem" style="display: none; max-width: 200px; margin-top: 10px; height: 200px;"/>
+
+        <button type="submit" class="salve">Mudar</button>
+    </form>
+    
+</div>
+
+
+<div class="navbar-left">
+    <section class="logo-simbol">
+        <img src="{% static 'img/logo.png' %}" alt="logo">
+    </section>
+    <br>
+    <div class="icons">
+        {% if request.user.groups.all.0.name == "Receber Doação" %}
+        <a href="{% url 'new_gif' %}" class="icon">
+            <img src="{% static 'img/icons8-box-50.png' %}" alt="">
+            <p>Pedir</p>
+        </a>
+        {% elif request.user.groups.all.0.name == "Doador" %}
+            <a href="{% url 'new_productd' %}" class="icon">
+                <img src="{% static 'img/icons8-box-50.png' %}" alt="">
+                <p>Doar</p>
+            </a>
+        {% endif %}
+        <a href="{% url 'user-address' %}" class="icon">
+            <img src="{% static 'img/icons8-address-50.png' %}" alt="">
+            <p>Endereços</p>
+        </a>
+        <a href="{% url 'map-page' %}" class="icon">
+            <img src="{% static 'img/icons8-map-50.png' %}" alt="">
+            <p>Mapa</p>
+        </a>
+        {% if request.user.groups.all.0.name == "Receber Doação" %}
+        <a href="{% url 'list-all-product' user.username %}" class="icon">
+            <img src="{% static 'img/icons8-products-48.png' %}" alt="">
+            <p>Produtos</p>
+        </a>
+        {% elif request.user.groups.all.0.name == "Doador" %}
+        <a href="{% url 'list-all' user.username %}" class="icon">
+            <img src="{% static 'img/icons8-dream-48.png' %}" alt="">
+            <p>pedidos</p>
+        </a>
+        {% endif %}
+        <i class="icon" id="search2">
+            <img src="{% static 'img/icons8-search-50.png' %}" alt="">
+            <p>Pesquisar</p>
+        </i>
+        <a href="{% url 'profile' %}" class="icon">
+            <img src="{% static 'img/icons8-person-64.png' %}">
+            <p>Perfil</p>
+        </a>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn">Sair</button>
+        </form>
+    </div>
+</div>
+<div class="search" id="search-menu">
+    <h2>Pesquisa</h2>
+    <input type="text" id="search" placeholder="Buscar usuário por nome ou interesse..." />
+    <br>
+    <div id="results" class="results"></div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/search.js' %}"></script>
+<script src="{% static 'js/open.js' %}"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const fileInput = document.querySelector('input[type="file"]');
+        const preview = document.getElementById("preview");
+
+        fileInput.addEventListener("change", function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "#";
+                preview.style.display = "none";
+            }
+        });
+    });
+</script>
+{% endblock %}

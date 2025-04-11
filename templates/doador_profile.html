@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'project/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'project/cartao.css'%}">
+{% endblock %}
+
+{% block main %}
+{% if messages %}
+<ul class="message">
+    {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<div class="bloco">
+    <div class="content-section">
+        <div class="media">
+            <a href="{% url 'update_form_photo' %}" class="icon-img">
+                {% if perfil.profile.image and perfil.profile.image.url != "/media/profile_pics/default.jpg" %}
+                    <img class="account-imgg" src="{{ perfil.profile.image.url }}">
+                {% else %}
+                    <img class="account-imgg" src="{% static 'img/default.jpg' %}">
+                {% endif %}
+            </a>
+            
+            <div class="media-body">
+                <div class="cont">
+                    <h2 class="account-heading">{{ perfil.username }}</h2>
+                    <p class="text-secondary">{{ perfil.email }}</p>
+                    <p class="text-secondary">Doador</p>
+                </div>
+                {% if is_owner %}
+                    <div class="cont2">
+                        <a href="{% url 'update_form' %}">Editar Perfil</a>
+                        <a href="{% url 'update_form_photo' %}" class="mude">Mudar foto</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="navbar-left">
+    <section class="logo-simbol">
+        <img src="{% static 'img/logo.png' %}" alt="logo">
+    </section>
+    <br>
+    <div class="icons">
+        <a href="{% url 'new_productd' %}" class="icon">
+            <img src="{% static 'img/icons8-box-50.png' %}" alt="">
+            <p>Doar</p>
+        </a>
+        <a href="{% url 'user-address' %}" class="icon">
+            <img src="{% static 'img/icons8-address-50.png' %}" alt="">
+            <p>Endereços</p>
+        </a>
+        <a href="{% url 'map-page' %}" class="icon">
+            <img src="{% static 'img/icons8-map-50.png' %}" alt="">
+            <p>Mapa</p>
+        </a>
+        {% if request.user.groups.all.0.name == "Receber Doação" %}
+            <a href="{% url 'list-all-product' user.username %}" class="icon">
+                <img src="{% static 'img/icons8-products-48.png' %}" alt="">
+                <p>Produtos</p>
+            </a>
+        {% elif request.user.groups.all.0.name == "Doador" %}
+        <a href="{% url 'list-all' user.username %}" class="icon">
+            <img src="{% static 'img/icons8-dream-48.png' %}" alt="">
+            <p>pedidos</p>
+        </a>
+        {% endif %}
+        <i class="icon" id="search2">
+            <img src="{% static 'img/icons8-search-50.png' %}" alt="">
+            <p>Pesquisar</p>
+        </i>
+        <a href="{% url 'profile' %}" class="icon">
+            <img src="{% static 'img/icons8-person-64.png' %}">
+            <p>Perfil</p>
+        </a>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn">Sair</button>
+        </form>
+    </div>
+</div>
+<div class="search" id="search-menu">
+    <h2>Pesquisa</h2>
+    <input type="text" id="search" placeholder="Buscar usuário por nome ou interesse..." />
+    <br>
+    <div id="results" class="results"></div>
+</div>
+
+{% if products %}
+    <ul class="triler_bloco">
+        {% for product in products %}
+            <li class="post-card">
+                <a href="{% url 'post-detail' product.pk %}">
+                <img src="{{ product.photo.url }}" alt="foto_produto" class="explore-img">
+                <div class="overlay">
+                    <div class="info">
+                        <strong>{{ product.name }}</strong>
+                        <span>{{ product.quantity }} un...</span>
+                    </div>
+                </div>
+                {% if request.user.groups.all.0.name == "Receber Doação" %}
+                <a href="{% url 'solicitar_doacao' product.pk %}" class="btn-quero4" >
+                    Eu quero!
+                </a>
+                {% endif %}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+<div class="first">
+    <p>Você ainda não doou nenhum produto.</p>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/search.js' %}"></script>
+<script src="{% static 'js/open.js' %}"></script>
+{% endblock %}

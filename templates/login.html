@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'project/login.css' %}">
+{% endblock %}
+
+{% block main %}
+{% if form.errors %}
+<ul>
+    {% for field in form %}
+        {% for error in field.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <li class="error">{{ error }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<div class="form-block">
+    <div class="block-img">
+        <img src="{% static 'img/menina_caixa.png' %}" alt="menina">
+    </div>
+    <div class="block-form">
+        <h1>Login</h1>
+        <p class="vindo">Bem vindo de volta!</p>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            
+            {{ form }}
+            <a href="{% url 'password_reset' %}" class="a2">Esqueci minha senha</a>
+
+            <button type="submit" class="salve">entrar</button>
+        </form>
+        <div class="link">
+            <a href="{% url 'register' %}" class="a">Não sou cadastrado</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+:root {
+    --primary-light: rgb(247, 209, 146);
+    --primary: rgb(237, 193, 133);
+    --primary-dark: rgb(175, 159, 96);
+    --accent-light: rgb(210, 127, 66);
+    --accent: rgb(157, 120, 68);
+    --neutral-light: rgb(114, 127, 92);
+    --neutral: rgb(140, 92, 46);
+    --neutral-dark: rgb(104, 66, 35);
+    --background: rgb(65, 79, 56);
+    --text: rgb(52, 36, 24);
+    --text-light: rgb(173, 173, 173);
+}

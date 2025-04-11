@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'project/cadastro.css' %}">
+{% endblock %}
+
+
+{% block main %}
+{% if form.errors %}
+<ul>
+    {% for field in form %}
+        {% for error in field.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <li class="error">{{ error }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="form-block">
+    <div class="block-form">
+        <h1>Cadastre-se</h1>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="class1">
+                <div class="input">
+                    <label for="{{ form.username.id_for_label }}">Usuário</label>
+                    {{ form.username }}
+                    </div>
+                    <div class="input">
+                    <label for="{{ form.email.id_for_label }}">Email</label>
+                    {{ form.email }}
+                    </div>
+            </div>
+
+            <div class="class2">
+                <div class="input">
+                    <label for="{{ profile_form.phone.id_for_label }}">Telefone</label>
+                    {{ form.phone }}
+                </div>
+    
+                <div class="input">
+                    <label for="{{ user_form.group.id_for_label }}">Tipo de Conta</label>
+                    {{ form.group }}
+                </div>
+            </div>
+
+            <div class="class3">
+                <div class="input">
+                    <label for="{{ form.password1.id_for_label }}">Senha</label>
+                    {{ form.password1 }}
+                    </div>
+                    <div class="input">
+                    <label for="{{ form.password2.id_for_label }}">Confirme a senha</label>
+                    {{ form.password2 }}
+                    </div>
+            </div>
+            <button type="submit" class="btn-enviar"> Enviar </button>
+    
+        </form>
+        <div class="link">
+            <a href="{% url 'login' %}" class="a">Já sou registrado</a>
+        </div>
+    </div>
+    <div class="block-img">
+        <img src="{% static 'img/menino.png'%}" alt="menino">
+    </div>
+</div>
+{% endblock %}

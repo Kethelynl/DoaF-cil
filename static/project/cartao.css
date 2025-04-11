@@ -1,0 +1,272 @@
+@import url('colors.css');
+
+
+.btn-quero{
+    z-index: 3;
+    position: absolute;
+    margin-top: 150px;
+    margin-left: -210px;
+    padding: 10px;
+    background-color: var(--accent-light);
+    color: var(--primary-light);
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.btn-quero2{
+    z-index: 3;
+    position: absolute;
+    margin-top: 150px;
+    margin-left: -230px;
+    padding: 10px;
+    background-color: var(--accent-light);
+    color: var(--primary-light);
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.btn-quero2:hover, .btn-quero:hover, .btn-quero3:hover, .btn-quero4:hover{
+    background-color: var(--neutral-dark);
+}
+
+.detail-img{
+    width: 100%;
+    height: 600px;
+}
+
+.detail{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    background-color: var(--background);
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+.rounded-circle.account-img{
+    margin-left: -220px;
+    margin-right: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+.link {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    display: flex;
+    gap: 20px;
+}
+.link a{
+    padding: 10px;
+    background-color: var(--primary-light);
+    border-radius: 5px;
+    font-weight: 500;
+    color: var(--background);
+}
+
+
+.btn-quero3{
+    position: absolute;
+    z-index: 4;
+    margin-left: 20%;
+    margin-top: -150px;
+    padding: 10px;
+    background-color: var(--accent-light);
+    color: var(--primary-light);
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+h1{
+    color: var(--primary-light);
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.btn-quero4{
+    position: absolute;
+    z-index: 4;
+    margin-left: 30%;
+    margin-top: -150px;
+    padding: 10px;
+    background-color: var(--accent-light);
+    color: var(--primary-light);
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+
+
+/** detail dos posts**/
+
+.media.content-section {
+    width: 100%;
+    max-width: 500px;
+    margin: 40px auto;
+    border: 1px solid #3d3d3d;
+    background-color: var(--background);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: var(--background);
+}
+
+.account-img {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: bold;
+    color: var(--primary-light);
+}
+
+.post-image img.detail-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post-body {
+    padding: 15px;
+    color: #fff;
+}
+
+.caption {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.date {
+    font-size: 12px;
+    color: var(--neutral);
+}
+
+/** poste dos usuários **/
+
+.triler_bloco {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    margin: 40px 10px;
+    padding: 0;
+    list-style: none;
+}
+
+.post-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.post-card img.explore-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.post-card:hover img.explore-img {
+    transform: scale(1.05);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.post-card:hover .overlay {
+    opacity: 1;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.post-header-explore {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    background-color: var(--background);
+    color: var(--primary-light);
+    font-size: 14px;
+}
+
+.author-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--neutral-dark);
+}
+
+.author-name {
+    font-weight: 500;
+}
+
+main {
+    min-height: 100vh;
+    overflow: visible;
+    display: block;
+    padding-bottom: 50px; /* margem extra pra evitar cortes */
+}
+
+
+@media (max-width: 900px) {
+
+    .triler_bloco{
+        margin-left: 20px;
+    }
+
+    .link {
+        bottom: 0px;
+    }
+
+    .btn-quero4{
+        margin-left: 40%;
+    }
+}
+
+
+@media(max-width:540px){
+
+    .media.content-section {
+        margin: 20px 10px;
+    }
+
+    .post-header {
+        margin-left: 80px;
+    }
+
+    .post-body {
+        padding: 10px;
+    }
+
+    .link {
+        bottom: 60px;
+    }
+}

@@ -1,0 +1,141 @@
+main{
+    display: flex;
+    justify-content: center;
+    background-color: var(--neutral-light);
+
+}
+
+.form-block{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+}
+
+.block1{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.block2{
+    width: 30%;
+}
+
+.block2 img{
+    width: 300px;
+}
+.block3 img{
+    width: 100%;
+    height: 400px;
+}
+
+.block3{
+    overflow: hidden;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.block3 p{
+    position: absolute;
+    z-index: 2;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    justify-content: center;
+
+}
+
+h2{
+    margin-bottom: 10px;
+}
+
+label{
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 17px;
+    
+}
+
+input, select{
+    padding: 10px 0px 10px;
+    font-size: 17px;
+    margin-bottom: 20px;
+    background: transparent;
+    border-bottom: solid 2px #fff;
+    color: var(--accent-light);
+}
+
+input:focus, select:focus {
+    outline: none;
+}
+
+#id_photo{
+    color: transparent;
+}
+
+.salve{
+    padding: 10px 50px 10px;
+    color: var(--neutral-light);
+    font-weight: 700;
+    font-size: 17px;
+    margin-top: 7px;
+    letter-spacing: 0.8px;
+    padding: 10px 10px 10px;
+    background-color: white;
+    transition: 0.3s ease-in-out;
+    position: relative;
+    cursor: url(../img/pointer.png), auto;
+}
+
+
+.salve::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 0%;
+    background-color: var(--accent-light);
+    transition: ease-in-out 0.4s;
+    z-index: -1;
+}
+
+.salve:hover::before{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.salve:hover{
+    color: aliceblue;
+    z-index: 2;
+}
+
+@media (max-width: 900px) {
+    .block1{
+        width: 100%;
+    }
+    
+    .block2{
+        width: 0;
+        display: none;
+    }
+    
+}
+
+@media(max-width:540px){
+    form{
+        width: 100%;
+    }
+}
